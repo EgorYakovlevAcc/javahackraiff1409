@@ -1,9 +1,12 @@
 package com.javahack.demo.models.bankoperation;
 
 import com.javahack.demo.models.Bill;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Date;
+
 
 @Entity
 public class Transaction extends BankOperation {
@@ -11,11 +14,13 @@ public class Transaction extends BankOperation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Date date = new Date();
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "from_bill_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Bill fromBill;
-    @OneToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "to_bill_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Bill toBill;
     private Long value;
     private Operation operation;
@@ -82,5 +87,4 @@ public class Transaction extends BankOperation {
     public void setDate(Date date) {
         this.date = date;
     }
-
 }

@@ -2,17 +2,13 @@ package com.javahack.demo.controllers;
 
 import com.javahack.demo.models.Bill;
 import com.javahack.demo.models.User;
-import com.javahack.demo.models.bankoperation.Transaction;
-import com.javahack.demo.repos.BillRepository;
 import com.javahack.demo.services.billservice.BillService;
-import com.javahack.demo.services.billservice.BillServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 

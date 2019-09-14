@@ -1,12 +1,13 @@
 package com.javahack.demo.models;
 
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GeneratorType;
+import com.javahack.demo.models.bankoperation.Transaction;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "bills")
@@ -19,6 +20,26 @@ public class Bill {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User holder;
     private Date createDate;
+    @OneToMany(mappedBy = "fromBill", cascade = CascadeType.ALL)
+    private List<Transaction> fromTransactions;
+    @OneToMany(mappedBy = "toBill", cascade = CascadeType.ALL)
+    private List<Transaction> toTransactions;
+
+    public List<Transaction> getFromTransactions() {
+        return fromTransactions;
+    }
+
+    public void setFromTransactions(List<Transaction> fromTransactions) {
+        this.fromTransactions = fromTransactions;
+    }
+
+    public List<Transaction> getToTransactions() {
+        return toTransactions;
+    }
+
+    public void setToTransactions(List<Transaction> toTransactions) {
+        this.toTransactions = toTransactions;
+    }
 
     public Long getMoneyValue() {
         return moneyValue;
@@ -33,10 +54,12 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(User holder, Date createDate, Long moneyValue) {
+    public Bill(User holder, Date createDate, Long moneyValue, List<Transaction> toTransactions, List<Transaction> fromTransactions) {
         this.holder = holder;
         this.createDate = createDate;
         this.moneyValue = moneyValue;
+        this.toTransactions = toTransactions;
+        this.fromTransactions = fromTransactions;
     }
 
     public Integer getId() {
@@ -61,5 +84,12 @@ public class Bill {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public List<Transaction> getAllTransactionsForBill() {
+        List<Transaction> transactions = new ArrayList<>();
+        transactions.addAll(this.fromTransactions);
+        transactions.addAll(this.toTransactions);
+        return transactions;
     }
 }
