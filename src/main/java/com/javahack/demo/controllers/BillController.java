@@ -2,8 +2,12 @@ package com.javahack.demo.controllers;
 
 import com.javahack.demo.models.Bill;
 import com.javahack.demo.models.User;
+import com.javahack.demo.models.bankoperation.pojo.FromClassToPojoConvertHelper;
+import com.javahack.demo.models.bankoperation.pojo.Transaction;
 import com.javahack.demo.services.billservice.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class BillController extends AbstractController {
@@ -47,5 +53,20 @@ public class BillController extends AbstractController {
         billService.save(bill);
         attributes.addAttribute("id", user.getId());
         return new RedirectView("/account/{id}");
+    }
+
+    @GetMapping("send/statistic/bill/{id}")
+    public ResponseEntity<List<Transaction>> sendDataForPlot (Model model, @AuthenticationPrincipal User user,
+                                                              @PathVariable("id") int billId){
+        try {
+            Bill bill = billService.findBillById(billId);
+            return new ResponseEntity<>(bill.getToTransactions().stream()
+                    .map(FromClassToPojoConvertHelper::convert)
+                    .collect(Collectors.toList()),
+                    HttpStatus.OK);
+        }
+        catch (Exception e) {
+            return null;
+        }
     }
 }
