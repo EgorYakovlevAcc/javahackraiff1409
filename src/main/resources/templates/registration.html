@@ -7,7 +7,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>login</title>
+    <title>registration</title>
     <link rel="stylesheet" href="styles/bootstrap.css">
     <script src="js/bootstrap.js"></script>
 
@@ -22,19 +22,28 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form class="form" th:userDto="${user}" th:action="@{/login}" method="post">
+                <form class="form" th:userDto="${user}" th:action="@{/registration}"  method="post">
                     <ul>
                         <li class="title_form">
-                            <h3> login form </h3>
+                            <h3> registration form </h3>
                         </li>
                         <li>
-                            <input type="text" class="login__username" placeholder="user's name" th:field="*{user.username}"/>
+                            <input type="text" class="login__username" th:field="*{user.login}" placeholder="user's name"/>
                         </li>
                         <li>
-                            <input type="password" class="login__password" placeholder="password" th:field="*{user.password}"/>
+                            <input type="email" class="login__password" th:field="*{user.email}" placeholder="email"/>
                         </li>
                         <li>
-                            <button type="submit" class="btn btn-primary login_btn">sign in</button>
+                            <input type="number" class="login__age" th:field="*{user.age}" placeholder="age"/>
+                        </li>
+                        <li>
+                            <input type="text" class="login__sex" th:field="*{user.sex}" placeholder="sex"/>
+                        </li>
+                        <li>
+                            <input type="password" class="login__password" th:field="*{user.password}" placeholder="password"/>
+                        </li>
+                        <li>
+                            <button type="submit" class="btn btn-primary login_btn">sign up</button>
                         </li>
                     </ul>
                 </form>

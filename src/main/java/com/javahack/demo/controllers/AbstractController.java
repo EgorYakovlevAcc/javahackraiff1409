@@ -1,6 +1,7 @@
 package com.javahack.demo.controllers;
 
 import com.javahack.demo.repos.UserRepository;
+import com.javahack.demo.services.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ public abstract class AbstractController {
     @Autowired
     protected AuthenticationManager authenticationManager;
     @Autowired
-    protected UserRepository userRepository;
+    protected UserService userService;
     protected static final Logger LOGGER = LoggerFactory.getLogger(MainController.class);
 
 }

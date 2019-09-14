@@ -1,6 +1,5 @@
 package com.javahack.demo.controllers;
 
-import com.google.zxing.WriterException;
 import com.javahack.demo.externalsystems.qrcodes.QRCodesGenerator;
 import com.javahack.demo.models.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -8,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.io.IOException;
 @Controller
 public class MainController extends AbstractController{
     @GetMapping({"/index", "/"})
@@ -28,7 +26,7 @@ public class MainController extends AbstractController{
     @GetMapping(value = "/admin")
     public String getAdmin(Model model) {
         LOGGER.info("GET ADMIN [START]");
-        model.addAttribute("users", userRepository.findAll());
+        model.addAttribute("users", userService.findAll());
         LOGGER.info(model.toString());
         LOGGER.info("GET ADMIN [FINISH]");
         return "admin";
