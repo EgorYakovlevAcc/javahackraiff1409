@@ -22,8 +22,6 @@ import javax.servlet.http.HttpServletRequest;
 public class AuthController extends AbstractController {
     @Autowired
     private CustomSecurityService securityService;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/registration")
     public String registration(Model model) {
@@ -33,8 +31,7 @@ public class AuthController extends AbstractController {
 
     @PostMapping(value = "/registration")
     public String registration(@ModelAttribute("user") User user, Model model, HttpServletRequest request) throws Exception {
-        String password = passwordEncoder.encode(user.getPassword());
-        user.setPassword(password);
+        String password = user.getPassword();
         String username = user.getUsername();
         user.setRole(Role.USER.toString());
         userService.save(user);
@@ -56,8 +53,7 @@ public class AuthController extends AbstractController {
     }
 
     @PostMapping(value = "/login")
-    public String login(Model model,
-                        @ModelAttribute("user") User user) {
+    public String login(@ModelAttribute("user") User user, Model model, HttpServletRequest request) {
         System.out.println("UYUYUYUYUYUYUYUYUY");
         UsernamePasswordAuthenticationToken authReq
                 = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), null);

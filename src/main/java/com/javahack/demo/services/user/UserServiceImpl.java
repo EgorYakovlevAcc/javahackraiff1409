@@ -3,6 +3,7 @@ package com.javahack.demo.services.user;
 import com.javahack.demo.models.User;
 import com.javahack.demo.repos.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,17 +13,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserServiceImpl () {
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
-    }
     @Override
     public void save(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
 
+    public UserServiceImpl() {
+    }
+
     @Override
-    public void delete(User user) {
-        userRepository.delete(user);
+    public void deleteUserById(Integer id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public User findByLogin(String login) {
+        return userRepository.findUserByLogin(login);
     }
 
     @Override
@@ -34,4 +44,7 @@ public class UserServiceImpl implements UserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
+
+
+
 }

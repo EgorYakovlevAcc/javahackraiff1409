@@ -30,7 +30,7 @@ public class DbInit implements CommandLineRunner {
             ordinaryUser.setEmail("yakovlev.es@phystech.edu");
             ordinaryUser.setSex("M");
             ordinaryUser.setAge(20);
-            ordinaryUser.setRole(Role.USER.getName());
+            ordinaryUser.setRole(Role.USER.getAuthority());
             users.add(ordinaryUser);
 
             User adminUser = new User();
@@ -39,7 +39,7 @@ public class DbInit implements CommandLineRunner {
             adminUser.setEmail("admin@admin.ru");
             adminUser.setAge(21);
             adminUser.setSex("M");
-            adminUser.setRole(Role.ADMIN.getName());
+            adminUser.setRole(Role.ADMIN.getAuthority());
             users.add(adminUser);
 
             userRepository.saveAll(users);

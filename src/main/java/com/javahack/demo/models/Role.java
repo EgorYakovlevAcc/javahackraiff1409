@@ -1,16 +1,20 @@
 package com.javahack.demo.models;
 
-public enum Role {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum Role implements GrantedAuthority {
     USER("USER"),
     ADMIN("ADMIN");
 
-    private String name;
+    private String authority;
 
-    public String getName() {
-        return name;
-    }
 
     Role(String name) {
-        this.name = name;
+        this.authority = name;
+    }
+
+    @Override
+    public String getAuthority() {
+        return authority;
     }
 }

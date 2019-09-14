@@ -22,8 +22,7 @@ public class QRCodesGenerator {
 
         Path path = FileSystems.getDefault().getPath(filePath);
         MatrixToImageWriter.writeToPath(bitMatrix, "PNG", path);
-        LOGGER.info(path.toString() + ".png");
-        return path.toString() + ".png";
+        return path.toString();
     }
 
     public static byte[] getQRCodeImage(String text, int width, int height) throws WriterException, IOException {

@@ -36,8 +36,9 @@ public class MainController extends AbstractController{
         LOGGER.info("GET QR [START]");
         try {
             String qrCodePath = QRCodesGenerator.generateQRCodeImage("yandex.ru", 100,
-                    100, "./egor");
-            model.addAttribute("qrCodePath", qrCodePath);
+                    100, "./egor.png");
+            LOGGER.info(qrCodePath);
+            model.addAttribute("qrCodePath", "C:/Users/Egor Yakovlev/javahack/egor.png");
         }
         catch (Exception e) {
             e.printStackTrace();

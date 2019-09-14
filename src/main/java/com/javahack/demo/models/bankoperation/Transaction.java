@@ -1,4 +1,4 @@
-package com.javahack.demo.models;
+package com.javahack.demo.models.bankoperation;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +7,7 @@ import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
-public class Transaction {
+public class Transaction extends BankOperation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

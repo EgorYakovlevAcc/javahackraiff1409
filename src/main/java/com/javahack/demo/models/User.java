@@ -4,7 +4,9 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -60,7 +62,9 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<Role> authorities = new ArrayList<>();
+        authorities.add(Role.USER);
+        return authorities;
     }
 
     public String getPassword() {
@@ -84,7 +88,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
@@ -118,5 +122,38 @@ public class User implements UserDetails {
 
     public void setSex(String sex) {
         this.sex = sex;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            System.out.println("EXIT 1");
+            return true;
+        }
+        if (obj == null) {
+            System.out.println("EXIT 2");
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            System.out.println("EXIT 3");
+            return false;
+        }
+
+        User other = (User) obj;
+//        if (other.getUsername().equals(username)) {
+//            System.out.println("EXIT 4");
+//            return false;
+//        }
+
+        if (other.getId() != id) {
+            System.out.println("EXIT 5");
+            return false;
+        }
+        return true;
     }
 }
