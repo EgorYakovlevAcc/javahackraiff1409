@@ -22,6 +22,16 @@ public class User implements UserDetails {
     private Integer age;
     private String sex;
     private String role;
+    @OneToMany(mappedBy = "holder", cascade = CascadeType.ALL)
+    private List<Bill> bills;
+
+    public List<Bill> getBills() {
+        return bills;
+    }
+
+    public void setBills(List<Bill> bills) {
+        this.bills = bills;
+    }
 
     public String getRole() {
         return role;
@@ -35,7 +45,7 @@ public class User implements UserDetails {
 
     }
 
-    public User(Integer id, String login, String password, String email, Integer age, String sex, String role) {
+    public User(Integer id, String login, String password, String email, Integer age, String sex, String role, List<Bill> bills) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -43,6 +53,7 @@ public class User implements UserDetails {
         this.sex = sex;
         this.id = id;
         this.role = role;
+        this.bills = bills;
     }
 
     public Integer getId() {

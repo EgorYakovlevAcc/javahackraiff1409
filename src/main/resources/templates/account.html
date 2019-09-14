@@ -7,6 +7,14 @@
 </head>
 <body>
     user account here
-    [[${user}.name]]
+    <p> login </p>
+    [[${user.login}]]
+    <p> bills </p>
+    <ul class="bill__items" th:each="bill : ${bills}">
+        <li>
+            <p th:text="${bill.getId()}"></p>
+            <p th:text="${bill.getMoneyValue()}"></p>
+        </li>
+    </ul>
 </body>
 </html>
