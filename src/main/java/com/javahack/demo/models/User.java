@@ -1,5 +1,7 @@
 package com.javahack.demo.models;
 
+import com.javahack.demo.models.bankoperation.CreditRequest;
+import com.javahack.demo.models.bankoperation.CreditResponse;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -24,6 +26,26 @@ public class User implements UserDetails {
     private String role;
     @OneToMany(mappedBy = "holder", cascade = CascadeType.ALL)
     private List<Bill> bills;
+    @OneToMany(mappedBy = "user_req", cascade = CascadeType.ALL)
+    private List<CreditRequest> creditRequests;
+    @OneToMany(mappedBy = "user_resp", cascade = CascadeType.ALL)
+    private List<CreditResponse> creditResponses;
+
+    public List<CreditRequest> getCreditRequests() {
+        return creditRequests;
+    }
+
+    public void setCreditRequests(List<CreditRequest> creditRequests) {
+        this.creditRequests = creditRequests;
+    }
+
+    public List<CreditResponse> getCreditResponses() {
+        return creditResponses;
+    }
+
+    public void setCreditResponses(List<CreditResponse> creditResponses) {
+        this.creditResponses = creditResponses;
+    }
 
     public List<Bill> getBills() {
         return bills;
@@ -45,7 +67,7 @@ public class User implements UserDetails {
 
     }
 
-    public User(Integer id, String login, String password, String email, Integer age, String sex, String role, List<Bill> bills) {
+    public User(Integer id, String login, String password, String email, Integer age, String sex, String role, List<Bill> bills, List<CreditRequest> creditRequests, List<CreditResponse> creditResponses) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -54,6 +76,8 @@ public class User implements UserDetails {
         this.id = id;
         this.role = role;
         this.bills = bills;
+        this.creditRequests = creditRequests;
+        this.creditResponses = creditResponses;
     }
 
     public Integer getId() {
