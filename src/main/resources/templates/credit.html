@@ -23,6 +23,10 @@
                             <input type="text" class="login__password" placeholder="value" th:field="*{creditRequest.value}"/>
                         </li>
                         <li>
+                            <p> your buisness area is </p>
+                            <p th:text="${area.name}"></p>
+                        </li>
+                        <li>
                             <button type="submit" class="btn btn-primary login_btn">analyse</button>
                         </li>
                     </ul>
