@@ -1,38 +1,45 @@
-<!doctype html>
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>login</title>
+    <title>Райффайзенбанк</title>
+    <meta http-equiv="refresh" content="login.html" />
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+
+    <link rel="icon" href="../src/img/icon.png">
+
+    <link href="../static/login.css" rel="stylesheet">
+
 </head>
-<body>
-<section class="login_form" id="login_form">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <form class="form" th:userDto="${user}" th:action="@{/login}" method="post">
-                    <ul>
-                        <li class="title_form">
-                            <h3> login form </h3>
-                        </li>
-                        <li>
-                            <input type="text" class="login__username" placeholder="user's name" th:field="*{user.username}"/>
-                        </li>
-                        <li>
-                            <input type="password" class="login__password" placeholder="password" th:field="*{user.password}"/>
-                        </li>
-                        <li>
-                            <button type="submit" class="btn btn-primary login_btn">sign in</button>
-                        </li>
-                    </ul>
-                </form>
-            </div>
-        </div>
+<body class="text-center">
+<form class="form-signin" th:userDto="${user}" th:action="@{/login}" method="post">
+    <img class="mb-4" src="../src/img/logo3.jpg" alt="" height="100">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus th:field="*{user.username}">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required th:field="*{user.password}">
+    <button class="btn btn-primary btn-lg btn-block">Sign in</button>
+    <p><a href="registartion.html">Not registered yet? Click here</a></p>
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+    <div>
+        [[${title}]]
     </div>
-</section>
+</form>
 </body>
 </html>
