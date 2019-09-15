@@ -15,7 +15,7 @@ public class MainController extends AbstractController{
         model.addAttribute("title", "JAVA HACK IS CREATING HERE");
         LOGGER.info(model.toString());
         LOGGER.info("GET INDEX [FINISH]");
-        return "index";
+        return "redirect:/account";
     }
     @GetMapping("/hello")
     public String getHello() {
