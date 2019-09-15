@@ -35,12 +35,18 @@ public class User implements UserDetails {
     private List<CreditResponse> creditResponses;
     private UserType userType;
     private BuisnessArea buisnessArea;
-    @OneToOne(fetch = FetchType.EAGER,
-            cascade =  CascadeType.ALL,
-            mappedBy = "user")
-    private ProductCatalog productCatalog;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<ProductCatalog> productCatalogs;
     public UserType getUserType() {
         return userType;
+    }
+
+    public List<ProductCatalog> getProductCatalogs() {
+        return productCatalogs;
+    }
+
+    public void setProductCatalogs(List<ProductCatalog> productCatalogs) {
+        this.productCatalogs = productCatalogs;
     }
 
     public void setUserType(UserType userType) {
@@ -103,7 +109,7 @@ public class User implements UserDetails {
 
     }
 
-    public User(UserType userType, BuisnessArea buisnessArea, Integer id, String login, String password, String email, Date age, String role, List<Bill> bills, List<CreditRequest> creditRequests, List<CreditResponse> creditResponses, String mobilePhone) {
+    public User(UserType userType, BuisnessArea buisnessArea, Integer id, String login, String password, String email, Date age, String role, List<Bill> bills, List<CreditRequest> creditRequests, List<CreditResponse> creditResponses, String mobilePhone, List<ProductCatalog> productCatalogs) {
         this.login = login;
         this.password = password;
         this.email = email;
@@ -116,6 +122,7 @@ public class User implements UserDetails {
         this.mobilePhone = mobilePhone;
         this.buisnessArea = buisnessArea;
         this.userType = userType;
+        this.productCatalogs = productCatalogs;
     }
 
     public Integer getId() {

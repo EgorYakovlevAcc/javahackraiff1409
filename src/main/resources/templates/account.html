@@ -20,21 +20,22 @@
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
             crossorigin="anonymous"></script>
 
-    <link rel="icon" href="../static/src/img/icon.png">
+    <link rel="icon" href="/src/img/icon.png">
 
-    <link href="../static/styles/account.css" rel="stylesheet">
+    <link href="/styles/account.css" rel="stylesheet">
 
 </head>
 <body>
+
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="conteiner">
             <div class="navbar-header">
                 <a class="navbar-brand" href="#"></a>
-                <img class="mb-4" src="../static/src/img/logo3.jpg" alt="" height="70">
+                <img class="mb-4" src="/src/img/logo3.jpg" alt="" height="70">
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <button class="btn btn-primary btn-lg">Credit By Contract</button>
+                    <button class="btn btn-primary btn-lg" onclick="window.location.href='/credit/request'">Credit By Contract</button>
                 </ul>
             </div>
         </div>
@@ -44,18 +45,27 @@
             <div class="row centered">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h1>[[${user.login}]]</h1>
-                    <ul class="bill__items" th:each="bill : ${bills}">
-                        <li>
-                            <p th:text="${bill.getId()}"></p>
-                            <p th:text="${bill.getMoneyValue()}"></p>
-                            <ul class="bill__items" th:each="transaction : ${bill.getAllTransactionsForBill()}">
-                                <li>
-                                    <p th:text="${transaction.getId()}"></p>
-                                    <p th:text="${transaction.getDate()}"></p>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
+                    <table class="table" style="padding: 140px">
+                        <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">value</th>
+                            <th scope="col">plot</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr  th:each="bill : ${bills}">
+                            <td th:text="${bill.getId()}"></td>
+                            <td th:text="${bill.getMoneyValue()}"></td>
+                            <td><form th:action="@{/getdata/json/{id} (id = ${bill.getId()})}"  method="get">
+                                <button type="submit" class="btn btn-primary btn-lg">show plot</button>
+                            </form></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <form th:action="@{/catalog/product/create}"  method="get">
+                        <button type="submit" class="btn btn-primary btn-lg">create product category</button>
+                    </form>
                 </div>
             </div>
         </div>

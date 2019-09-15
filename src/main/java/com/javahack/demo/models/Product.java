@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,13 +18,23 @@ public class Product {
     private ProductCatalog productCatalog;
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<ComponentOfProductWithValue> componentsOfProductWithValue;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Product() {
     }
 
-    public Product(ProductCatalog productCatalog, List<ComponentOfProductWithValue> componentsOfProductWithValue) {
+    public Product(String name, ProductCatalog productCatalog, List<ComponentOfProductWithValue> componentsOfProductWithValue) {
         this.productCatalog = productCatalog;
         this.componentsOfProductWithValue = componentsOfProductWithValue;
+        this.name = name;
     }
 
     public Integer getId() {

@@ -4,9 +4,10 @@ import com.javahack.demo.models.Product;
 import com.javahack.demo.models.ProductCatalog;
 import com.javahack.demo.repos.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductRepository productRepository;

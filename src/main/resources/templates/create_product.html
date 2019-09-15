@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create product</title>
+</head>
+<body>
+<p>create product</p>
+<form name='create_post_form' th:action="@{/product/create/{id}(id = ${id})}" th:value="product" enctype="utf8" method="post">
+    <input type="text" th:field="${product.name}" placeholder="name"/>
+    <button type="submit" class="sign_in_btn ml-auto" style="width: 130px; margin: 20px">create</button>
+</form>
+</body>
+</html>

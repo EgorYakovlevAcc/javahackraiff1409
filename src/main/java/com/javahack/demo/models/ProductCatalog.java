@@ -1,5 +1,8 @@
 package com.javahack.demo.models;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,18 +12,29 @@ public class ProductCatalog {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
     @OneToMany(mappedBy = "productCatalog", cascade = CascadeType.ALL)
     private List<Product> products;
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public ProductCatalog() {
     }
 
-    public ProductCatalog(User user, List<Product> products) {
+    public ProductCatalog(User user, List<Product> products, String name) {
         this.user = user;
         this.products = products;
+        this.name = name;
     }
 
     public Integer getId() {

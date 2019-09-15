@@ -1,0 +1,16 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create catalog</title>
+</head>
+<body>
+<p>create catalog</p>
+<form name='create_post_form' th:action="@{/catalog/product/create}" th:value="productCatalog" enctype="utf8" method="post">
+    <input type="text" th:field="${productCatalog.name}" placeholder="name"/>
+    <button type="submit" class="sign_in_btn ml-auto" style="width: 130px; margin: 20px">create</button>
+</form>
+</body>
+</html>
