@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,21 +25,11 @@ public class DbInit implements CommandLineRunner {
             LOGGER.info("'users' table is empty in database");
             List<User> users = new LinkedList<>();
 
-            User ordinaryUser = new User();
-            ordinaryUser.setLogin("EgorYakovlev");
-            ordinaryUser.setPassword("Pomidor1998");
-            ordinaryUser.setEmail("yakovlev.es@phystech.edu");
-            ordinaryUser.setSex("M");
-            ordinaryUser.setAge(20);
-            ordinaryUser.setRole(Role.USER.getAuthority());
-            users.add(ordinaryUser);
-
             User adminUser = new User();
             adminUser.setLogin("admin");
             adminUser.setPassword("admin");
             adminUser.setEmail("admin@admin.ru");
-            adminUser.setAge(21);
-            adminUser.setSex("M");
+            adminUser.setAge(new Date());
             adminUser.setRole(Role.ADMIN.getAuthority());
             users.add(adminUser);
 

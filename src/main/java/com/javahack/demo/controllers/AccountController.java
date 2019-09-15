@@ -5,6 +5,7 @@ import com.javahack.demo.models.bankoperation.CreditRequest;
 import com.javahack.demo.models.bankoperation.CreditResponse;
 import com.javahack.demo.services.billservice.BillService;
 import com.javahack.demo.services.credit.request.CreditRequestService;
+import com.javahack.demo.services.credit.response.CreditResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,8 @@ public class AccountController extends AbstractController {
     private BillService billService;
     @Autowired
     private CreditRequestService creditRequestService;
+    @Autowired
+    private CreditResponseService creditResponseService;
     @GetMapping("/account")
     public RedirectView getAccount(Model model, @AuthenticationPrincipal User user, RedirectAttributes attributes) {
         attributes.addAttribute("id", userService.findByLogin(user.getLogin()).getId());
@@ -37,15 +40,18 @@ public class AccountController extends AbstractController {
     @GetMapping("/credit/request")
     public String getCredit(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("creditRequest", new CreditRequest());
-        return "account";
+        return "credit";
     }
     @PostMapping("/credit/request")
     public RedirectView postCredit(Model model, @AuthenticationPrincipal User user, RedirectAttributes attributes,@ModelAttribute("creditRequest") CreditRequest creditRequest) {
-       CreditResponse creditResponse = new CreditResponse();
+       creditRequest.setUser_req(user);
+        CreditResponse creditResponse = new CreditResponse();
        creditRequest.setCreditResponse(creditResponse);
-       creditResponse.setUser_resp(creditRequest.getUser());
+       creditResponse.setCreditRequest(creditRequest);
+       creditResponse.setUser_resp(user);
         creditRequestService.save(creditRequest);
-       attributes.addAttribute("creditResponse", new CreditResponse());
+        creditResponseService.save(creditResponse);
+       attributes.addAttribute("creditResponse", creditResponse);
         return new RedirectView("/credit/response/{id}");
     }
 }

@@ -3,6 +3,7 @@ package com.javahack.demo.models.bankoperation;
 import com.javahack.demo.models.User;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class CreditRequest  {
     @JoinColumn(name = "user_req_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user_req;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
     private Date dueTo;
     private Long value;
     @OneToOne(fetch = FetchType.EAGER,

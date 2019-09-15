@@ -11,16 +11,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form class="form" th:value="${user}" th:action="@{/credit}" method="post">
+                <form class="form" th:value="${user}" th:action="@{/credit/request}" method="post">
                     <ul>
                         <li class="title_form">
                             <h3> analyse credit possibilities </h3>
                         </li>
                         <li>
-                            <input type="date" class="login__username" placeholder="due to" th:field="*{user.username}"/>
+                            <input type="date" class="login__username" placeholder="due to" th:field="*{creditRequest.dueTo}"/>
                         </li>
                         <li>
-                            <input type="text" class="login__password" placeholder="value" th:field="*{user.password}"/>
+                            <input type="text" class="login__password" placeholder="value" th:field="*{creditRequest.value}"/>
                         </li>
                         <li>
                             <button type="submit" class="btn btn-primary login_btn">analyse</button>

@@ -2,12 +2,14 @@ package com.javahack.demo.models;
 
 import com.javahack.demo.models.bankoperation.CreditRequest;
 import com.javahack.demo.models.bankoperation.CreditResponse;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -21,8 +23,9 @@ public class User implements UserDetails {
     @Column(nullable = false)
     private String password;
     private String email;
-    private Integer age;
-    private String sex;
+    @DateTimeFormat(iso= DateTimeFormat.ISO.DATE)
+    private Date age;
+    private String mobilePhone;
     private String role;
     @OneToMany(mappedBy = "holder", cascade = CascadeType.ALL)
     private List<Bill> bills;
@@ -30,6 +33,18 @@ public class User implements UserDetails {
     private List<CreditRequest> creditRequests;
     @OneToMany(mappedBy = "user_resp", cascade = CascadeType.ALL)
     private List<CreditResponse> creditResponses;
+
+    public void setAge(Date age) {
+        this.age = age;
+    }
+
+    public String getMobilePhone() {
+        return mobilePhone;
+    }
+
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone;
+    }
 
     public List<CreditRequest> getCreditRequests() {
         return creditRequests;
@@ -67,17 +82,17 @@ public class User implements UserDetails {
 
     }
 
-    public User(Integer id, String login, String password, String email, Integer age, String sex, String role, List<Bill> bills, List<CreditRequest> creditRequests, List<CreditResponse> creditResponses) {
+    public User(Integer id, String login, String password, String email, Date age, String role, List<Bill> bills, List<CreditRequest> creditRequests, List<CreditResponse> creditResponses, String mobilePhone) {
         this.login = login;
         this.password = password;
         this.email = email;
         this.age = age;
-        this.sex = sex;
         this.id = id;
         this.role = role;
         this.bills = bills;
         this.creditRequests = creditRequests;
         this.creditResponses = creditResponses;
+        this.mobilePhone = mobilePhone;
     }
 
     public Integer getId() {
@@ -143,20 +158,8 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    public Integer getAge() {
+    public Date getAge() {
         return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
     }
 
     @Override
