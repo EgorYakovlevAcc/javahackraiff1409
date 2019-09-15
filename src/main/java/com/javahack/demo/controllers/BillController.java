@@ -2,8 +2,10 @@ package com.javahack.demo.controllers;
 
 import com.javahack.demo.models.Bill;
 import com.javahack.demo.models.User;
+import com.javahack.demo.models.bankoperation.ValueHistory;
 import com.javahack.demo.models.bankoperation.pojo.FromClassToPojoConvertHelper;
 import com.javahack.demo.models.bankoperation.pojo.Transaction;
+import com.javahack.demo.repos.ValueHistoryRepository;
 import com.javahack.demo.services.billservice.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
