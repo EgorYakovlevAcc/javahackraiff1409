@@ -54,7 +54,6 @@ public class AuthController extends AbstractController {
 
     @PostMapping(value = "/login")
     public String login(@ModelAttribute("user") User user, Model model, HttpServletRequest request) {
-        System.out.println("UYUYUYUYUYUYUYUYUY");
         UsernamePasswordAuthenticationToken authReq
                 = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), null);
 

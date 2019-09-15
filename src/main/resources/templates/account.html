@@ -6,15 +6,20 @@
     <title>account</title>
 </head>
 <body>
-    user account here
-    <p> login </p>
-    [[${user.login}]]
-    <p> bills </p>
-    <ul class="bill__items" th:each="bill : ${bills}">
+<p>Hello, [[${user.login}]]</p>
+    <h2>bills </h2>
+<ul class="bill__items" th:each="bill : ${bills}">
         <li>
             <p th:text="${bill.getId()}"></p>
             <p th:text="${bill.getMoneyValue()}"></p>
+            <ul  class="bill__items" th:each="transaction : ${bill.getAllTransactionsForBill()}">
+                <li>
+                   <p th:text="${transaction.getId()}"></p>
+                   <p th:text="${transaction.getDate()}"></p>
+                </li>
+            </ul>
         </li>
     </ul>
+<a href="credit.html">get credit by contract</a>
 </body>
 </html>

@@ -1,13 +1,18 @@
 package com.javahack.demo.controllers;
 
 import com.javahack.demo.models.User;
+import com.javahack.demo.models.bankoperation.CreditRequest;
+import com.javahack.demo.models.bankoperation.CreditResponse;
 import com.javahack.demo.services.billservice.BillService;
+import com.javahack.demo.services.credit.request.CreditRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -15,6 +20,8 @@ import org.springframework.web.servlet.view.RedirectView;
 public class AccountController extends AbstractController {
     @Autowired
     private BillService billService;
+    @Autowired
+    private CreditRequestService creditRequestService;
     @GetMapping("/account")
     public RedirectView getAccount(Model model, @AuthenticationPrincipal User user, RedirectAttributes attributes) {
         attributes.addAttribute("id", userService.findByLogin(user.getLogin()).getId());
@@ -25,5 +32,20 @@ public class AccountController extends AbstractController {
         model.addAttribute("user", user);
         model.addAttribute("bills", billService.findBillsByHolder(user));
         return "account";
+    }
+
+    @GetMapping("/credit/request")
+    public String getCredit(Model model, @AuthenticationPrincipal User user) {
+        model.addAttribute("creditRequest", new CreditRequest());
+        return "account";
+    }
+    @PostMapping("/credit/request")
+    public RedirectView postCredit(Model model, @AuthenticationPrincipal User user, RedirectAttributes attributes,@ModelAttribute("creditRequest") CreditRequest creditRequest) {
+       CreditResponse creditResponse = new CreditResponse();
+       creditRequest.setCreditResponse(creditResponse);
+       creditResponse.setUser_resp(creditRequest.getUser());
+        creditRequestService.save(creditRequest);
+       attributes.addAttribute("creditResponse", new CreditResponse());
+        return new RedirectView("/credit/response/{id}");
     }
 }
