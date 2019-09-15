@@ -2,14 +2,39 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>create component</title>
+    <title>Catalog</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+
+    <link rel="icon" href="/src/img/icon.png">
+
+    <link href="../static/styles/create_component.css" rel="stylesheet">
+
 </head>
-<body>
-<form name='create_post_form' th:action="@{/product/components/create/{id}(id = ${prId})}" th:value="productComponent" enctype="utf8" method="post">
-    <p>products qunatity</p>
-    <input type="text" th:field="${productComponent.value}" placeholder="value"/>
-    <button type="submit" class="sign_in_btn ml-auto" style="width: 130px; margin: 20px">create</button>
+<body class="text-center">
+<form class="form-signin" th:action="@{/product/components/create/{id}(id = ${prId})}" th:value="productComponent" enctype="utf8" method="post">
+    <img class="mb-4" src="../static/src/img/logo3.jpg" alt="" height="100">
+    <h1 class="h3 mb-3 font-weight-normal">Product quantity:</h1>
+
+    <label for="inputQuantity" class="sr-only">Quantity</label>
+    <input type="text" id="inputQuantity" class="form-control" placeholder="Quantity" required th:field="${productComponent.value}">
+
+
+    <button class="btn btn-primary btn-lg btn-block">Create</button>
+
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
 </form>
 </body>
 </html>

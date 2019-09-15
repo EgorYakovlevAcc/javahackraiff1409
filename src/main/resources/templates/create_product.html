@@ -2,14 +2,40 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>create product</title>
+    <title>Catalog</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+
+    <link rel="icon" href="/src/img/icon.png">
+
+    <link href="../static/styles/create_product.css" rel="stylesheet">
+
 </head>
-<body>
-<p>create product</p>
-<form name='create_post_form' th:action="@{/product/create/{id}(id = ${id})}" th:value="product" enctype="utf8" method="post">
-    <input type="text" th:field="${product.name}" placeholder="name"/>
-    <button type="submit" class="sign_in_btn ml-auto" style="width: 130px; margin: 20px">create</button>
+
+<body class="text-center">
+<form class="form-signin" th:action="@{/product/create/{id}(id = ${id})}" th:value="product" enctype="utf8" method="post">
+    <img class="mb-4" src="../static/src/img/logo3.jpg" alt="" height="100">
+    <h1 class="h3 mb-3 font-weight-normal">Create product!!!</h1>
+
+    <label for="inputName" class="sr-only">Name</label>
+    <input type="text" id="inputName" class="form-control" placeholder="Product name" required th:field="${product.name}">
+
+
+    <button class="btn btn-primary btn-lg btn-block">Create</button>
+
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
 </form>
 </body>
 </html>
