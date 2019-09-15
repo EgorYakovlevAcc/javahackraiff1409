@@ -6,9 +6,8 @@
 </head>
 <body>
 user's catalogs are here
-<table>
-    <tr th:each="productCatalog: ${productCatalogs}">
-        <td>id:
+    <ul th:each="productCatalog: ${productCatalogs}">
+        <li>id:
             <p th:text="${productCatalog.getId()}"></p>
             name:
             <p th:text="${productCatalog.getName()}"></p>
@@ -21,8 +20,7 @@ user's catalogs are here
                     <p th:text="${product.getName()}"></p>
                 </li>
             </ul>
-        </td>
-    </tr>
-</table>
+        </li>
+    </ul>
 </body>
 </html>

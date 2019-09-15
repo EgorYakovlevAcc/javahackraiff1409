@@ -27,7 +27,7 @@
 <body class="text-center">
 <form class="form-signin" th:action="@{/product/create/{id}(id = ${id})}" th:value="product" enctype="utf8" method="post">
     <img class="mb-4" src="/src/img/logo3.jpg" alt="" height="100">
-    <h1 class="h3 mb-3 font-weight-normal">Create product!!!</h1>
+    <h1 class="h3 mb-3 font-weight-normal">Create product</h1>
 
     <label for="inputName" class="sr-only">Name</label>
     <input type="text" id="inputName" class="form-control" placeholder="Product name" required th:field="${product.name}">
