@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 public class ProductCatalogController extends AbstractController {
     @Autowired
@@ -48,6 +50,7 @@ public class ProductCatalogController extends AbstractController {
     @PostMapping("/product/create/{id}")
     public String postCreateProduct(RedirectAttributes attributes, Model model, @AuthenticationPrincipal User user, @PathVariable("id") int id, @ModelAttribute("product") Product product){
         ProductCatalog productCatalog = productCatalogService.findProductCatalogById(id);
+        product.setProductCatalog(productCatalog);
         productCatalogService.save(productCatalog);
         System.out.println(product.toString());
         System.out.println(product.getName());
@@ -68,11 +71,12 @@ public class ProductCatalogController extends AbstractController {
                 componentOfProductWithValueService.save(componentOfProductWithValue);
             }
 
-        return "redirect:/catalog";
+        return "redirect:/account";
     }
     @GetMapping("/catalog")
     public String getCatalog(Model model, @AuthenticationPrincipal User user){
-        model.addAttribute("productCatalog", productCatalogService.findProductCatalogsByUser(user));
-        return "redirect:/account";
+        List<ProductCatalog> productsCatalog = productCatalogService.findProductCatalogsByUser(user);
+        model.addAttribute("productCatalogs", productsCatalog);
+        return "catalog";
     }
 }

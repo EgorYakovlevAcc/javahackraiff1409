@@ -2,11 +2,27 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>catalog</title>
 </head>
 <body>
 user's catalogs are here
-[[${productCatalog}]]
+<table>
+    <tr th:each="productCatalog: ${productCatalogs}">
+        <td>id:
+            <p th:text="${productCatalog.getId()}"></p>
+            name:
+            <p th:text="${productCatalog.getName()}"></p>
+            product:
+            <ul th:each="product: ${productCatalog.getProducts()}" style="decoration: none">
+                <li style="decoration: none">
+                    id:
+                    <p th:text="${product.getId()}"></p>
+                    name:
+                    <p th:text="${product.getName()}"></p>
+                </li>
+            </ul>
+        </td>
+    </tr>
+</table>
 </body>
 </html>

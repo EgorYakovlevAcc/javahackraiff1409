@@ -21,13 +21,13 @@
 
     <link rel="icon" href="/src/img/icon.png">
 
-    <link href="../static/styles/create_catalog.css" rel="stylesheet">
+    <link href="/styles/create_catalog.css" rel="stylesheet">
 
 </head>
 
 <body class="text-center">
 <form class="form-signin" th:action="@{/catalog/product/create}" th:value="productCatalog" enctype="utf8" method="post">
-    <img class="mb-4" src="../static/src/img/logo3.jpg" alt="" height="100">
+    <img class="mb-4" src="/src/img/logo3.jpg" alt="" height="100">
     <h1 class="h3 mb-3 font-weight-normal">Create catalog:</h1>
 
     <label for="inputName" class="sr-only">Name</label>
