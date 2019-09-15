@@ -1,6 +1,7 @@
 package com.javahack.demo.models;
 
 import com.javahack.demo.models.bankoperation.Transaction;
+import com.javahack.demo.models.bankoperation.ValueHistory;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -24,6 +25,16 @@ public class Bill {
     private List<Transaction> fromTransactions;
     @OneToMany(mappedBy = "toBill", cascade = CascadeType.ALL)
     private List<Transaction> toTransactions;
+    @OneToMany(mappedBy = "bill", cascade = CascadeType.ALL)
+    private List<ValueHistory> valueHistories;
+
+    public List<ValueHistory> getValueHistories() {
+        return valueHistories;
+    }
+
+    public void setValueHistories(List<ValueHistory> valueHistories) {
+        this.valueHistories = valueHistories;
+    }
 
     public List<Transaction> getFromTransactions() {
         return fromTransactions;
@@ -54,7 +65,7 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(User holder, Date createDate, Long moneyValue, List<Transaction> toTransactions, List<Transaction> fromTransactions) {
+    public Bill(User holder, Date createDate, Long moneyValue, List<Transaction> toTransactions, List<Transaction> fromTransactions, ValueHistory valueHistories) {
         this.holder = holder;
         this.createDate = createDate;
         this.moneyValue = moneyValue;
