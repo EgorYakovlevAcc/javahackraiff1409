@@ -1,5 +1,6 @@
 package com.javahack.demo.controllers;
 
+import com.javahack.demo.models.BuisnessArea;
 import com.javahack.demo.models.User;
 import com.javahack.demo.models.bankoperation.CreditRequest;
 import com.javahack.demo.models.bankoperation.CreditResponse;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Arrays;
 
 @Controller
 public class AccountController extends AbstractController {
@@ -40,6 +43,7 @@ public class AccountController extends AbstractController {
     @GetMapping("/credit/request")
     public String getCredit(Model model, @AuthenticationPrincipal User user) {
         model.addAttribute("creditRequest", new CreditRequest());
+        model.addAttribute("area", user.getBuisnessArea() != null ? user.getBuisnessArea() : BuisnessArea.FOOD);
         return "credit";
     }
     @PostMapping("/credit/request")
@@ -51,7 +55,7 @@ public class AccountController extends AbstractController {
        creditResponse.setUser_resp(user);
         creditRequestService.save(creditRequest);
         creditResponseService.save(creditResponse);
-       attributes.addAttribute("creditResponse", creditResponse);
-        return new RedirectView("/credit/response/{id}");
+       attributes.addAttribute("id", creditResponse.getId());
+        return new RedirectView("/credit/response/wait/{id}");
     }
 }

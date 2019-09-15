@@ -1,20 +1,11 @@
-<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <title>admin</title>
+    <title>catalog</title>
 </head>
 <body>
-here is admin page
-<br/>
-list of users:
-<ul th:each="user : ${users}">
-    <li>
-        <p th:text="${user.getLogin()} + ' ' + ${user.getEmail()}"></p>
-    </li>
-</ul>
+
 </body>
 </html>

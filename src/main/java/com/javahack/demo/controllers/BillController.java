@@ -2,31 +2,17 @@ package com.javahack.demo.controllers;
 
 import com.javahack.demo.models.Bill;
 import com.javahack.demo.models.User;
-import com.javahack.demo.models.bankoperation.ValueHistory;
-import com.javahack.demo.models.bankoperation.pojo.FromClassToPojoConvertHelper;
-import com.javahack.demo.models.bankoperation.pojo.Transaction;
-import com.javahack.demo.repos.ValueHistoryRepository;
 import com.javahack.demo.services.billservice.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Controller
 public class BillController extends AbstractController {

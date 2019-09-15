@@ -1,6 +1,7 @@
 package com.javahack.demo.models.bankoperation;
 
 import com.javahack.demo.models.Bill;
+import com.javahack.demo.models.TransactionType;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -24,13 +25,23 @@ public class Transaction extends BankOperation {
     private Bill toBill;
     private Long value;
     private Operation operation;
+    private TransactionType transactionType;
 
-    public Transaction(Date date, Bill fromBill, Bill toBill, Long value, Operation operation) {
+    public TransactionType getTransactionType() {
+        return transactionType;
+    }
+
+    public void setTransactionType(TransactionType transactionType) {
+        this.transactionType = transactionType;
+    }
+
+    public Transaction(Date date, Bill fromBill, Bill toBill, Long value, Operation operation, TransactionType transactionType) {
         this.date = date;
         this.fromBill = fromBill;
         this.toBill = toBill;
         this.value = value;
         this.operation = operation;
+        this.transactionType = transactionType;
     }
 
     public Long getValue() {
