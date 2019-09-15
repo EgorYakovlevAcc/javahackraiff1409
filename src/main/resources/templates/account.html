@@ -1,25 +1,64 @@
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>account</title>
+    <title>Raiffeisen</title>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css"
+          integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+            integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+            crossorigin="anonymous"></script>
+
+    <link rel="icon" href="../static/src/img/icon.png">
+
+    <link href="../static/styles/account.css" rel="stylesheet">
+
 </head>
 <body>
-<p>Hello, [[${user.login}]]</p>
-    <h2>bills </h2>
-<ul class="bill__items" th:each="bill : ${bills}">
-        <li>
-            <p th:text="${bill.getId()}"></p>
-            <p th:text="${bill.getMoneyValue()}"></p>
-            <ul  class="bill__items" th:each="transaction : ${bill.getAllTransactionsForBill()}">
-                <li>
-                   <p th:text="${transaction.getId()}"></p>
-                   <p th:text="${transaction.getDate()}"></p>
-                </li>
-            </ul>
-        </li>
-    </ul>
-<a href="/credit/request">get credit by contract</a>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="conteiner">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#"></a>
+                <img class="mb-4" src="../static/src/img/logo3.jpg" alt="" height="70">
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <button class="btn btn-primary btn-lg">Credit By Contract</button>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="headerwrap">
+        <div class="container">
+            <div class="row centered">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h1>[[${user.login}]]</h1>
+                    <ul class="bill__items" th:each="bill : ${bills}">
+                        <li>
+                            <p th:text="${bill.getId()}"></p>
+                            <p th:text="${bill.getMoneyValue()}"></p>
+                            <ul class="bill__items" th:each="transaction : ${bill.getAllTransactionsForBill()}">
+                                <li>
+                                    <p th:text="${transaction.getId()}"></p>
+                                    <p th:text="${transaction.getDate()}"></p>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
