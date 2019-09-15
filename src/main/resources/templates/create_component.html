@@ -6,7 +6,7 @@
     <title>create component</title>
 </head>
 <body>
-<form name='create_post_form' th:action="@{/product/components/create/{id}(id = ${id})}" th:value="productComponent" enctype="utf8" method="post">
+<form name='create_post_form' th:action="@{/product/components/create/{id}(id = ${prId})}" th:value="productComponent" enctype="utf8" method="post">
     <p>products qunatity</p>
     <input type="text" th:field="${productComponent.value}" placeholder="value"/>
     <button type="submit" class="sign_in_btn ml-auto" style="width: 130px; margin: 20px">create</button>

@@ -52,13 +52,12 @@ public class ProductCatalogController extends AbstractController {
         System.out.println(product.toString());
         System.out.println(product.getName());
         System.out.println(product.getId());
-        product.setProductCatalog(productCatalog);
         productService.save(product);
         attributes.addAttribute("prId", product.getId());
         return "redirect:/product/components/create/{prId}";
     }
-    @GetMapping("/product/components/create/{id}")
-    public String getCreateComponent(Model model, @AuthenticationPrincipal User user, @PathVariable("id") int id){
+    @GetMapping("/product/components/create/{prId}")
+    public String getCreateComponent(Model model, @AuthenticationPrincipal User user, @PathVariable("prId") int id){
         model.addAttribute("productComponent", new ComponentOfProductWithValue());
         return "create_component";
     }
@@ -67,7 +66,6 @@ public class ProductCatalogController extends AbstractController {
             if (productService.findProductById(id) != null) {
                 componentOfProductWithValue.setProduct(productService.findProductById(id));
                 componentOfProductWithValueService.save(componentOfProductWithValue);
-                System.out.println("SUCCESS");
             }
 
         return "redirect:/catalog";
@@ -75,6 +73,6 @@ public class ProductCatalogController extends AbstractController {
     @GetMapping("/catalog")
     public String getCatalog(Model model, @AuthenticationPrincipal User user){
         model.addAttribute("productCatalog", productCatalogService.findProductCatalogsByUser(user));
-        return "catalog";
+        return "redirect:/account";
     }
 }
