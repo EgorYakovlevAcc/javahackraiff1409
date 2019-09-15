@@ -16,12 +16,13 @@ public class Product {
     @JoinColumn(name = "product_catalog_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private ProductCatalog productCatalog;
-    private List<ComponentsOfProductWithValue> componentsOfProductWithValue;
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<ComponentOfProductWithValue> componentsOfProductWithValue;
 
     public Product() {
     }
 
-    public Product(ProductCatalog productCatalog, List<ComponentsOfProductWithValue> componentsOfProductWithValue) {
+    public Product(ProductCatalog productCatalog, List<ComponentOfProductWithValue> componentsOfProductWithValue) {
         this.productCatalog = productCatalog;
         this.componentsOfProductWithValue = componentsOfProductWithValue;
     }
@@ -42,11 +43,11 @@ public class Product {
         this.productCatalog = productCatalog;
     }
 
-    public List<ComponentsOfProductWithValue> getComponentsOfProductWithValue() {
+    public List<ComponentOfProductWithValue> getComponentsOfProductWithValue() {
         return componentsOfProductWithValue;
     }
 
-    public void setComponentsOfProductWithValue(List<ComponentsOfProductWithValue> componentsOfProductWithValue) {
+    public void setComponentsOfProductWithValue(List<ComponentOfProductWithValue> componentsOfProductWithValue) {
         this.componentsOfProductWithValue = componentsOfProductWithValue;
     }
 }
