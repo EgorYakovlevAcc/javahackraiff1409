@@ -20,20 +20,24 @@
             integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
             crossorigin="anonymous"></script>
 
-    <link rel="icon" href="/src/img/icon.png">
+    <link rel="icon" href="../src/img/icon.png">
 
-    <link href="/styles/login.css" rel="stylesheet">
+    <link href="../static/styles/login.css" rel="stylesheet">
 
 </head>
 <body class="text-center">
 <form class="form-signin" th:userDto="${user}" th:action="@{/login}" method="post">
-    <img class="mb-4" src="/src/img/logo3.jpg" alt="" height="100">
+    <img class="mb-4" src="../static/src/img/logo3.jpg" alt="" height="100">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="text" id="inputEmail" class="form-control" placeholder="Email address" required autofocus th:field="*{user.username}">
+
+    <label for="inputLogin" class="sr-only">Login</label>
+    <input type="text" id="inputLogin" class="form-control" placeholder="Login" required autofocus th:field="*{user.username}">
+
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required th:field="*{user.password}">
+
     <button class="btn btn-primary btn-lg btn-block">Sign in</button>
+
     <p><a href="registartion.html">Not registered yet? Click here</a></p>
     <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
     <div>
